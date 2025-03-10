@@ -21,11 +21,17 @@
                Margin="10" 
                FontSize="20"/>
 
-            <Button x:Name="GetWeatherBtn" 
-                Text="Get Weather" 
-                VerticalOptions="End"
-                Margin="20"
-                Clicked="GetWeatherBtn_Clicked" />
+            <Image x:Name="WeatherImg"
+                   WidthRequest="200"
+                   HeightRequest="200"
+                   HorizontalOptions="Center"
+                   Margin="10"/>
+
+            <Button x:Name="GetWeatherButton"
+                    Text="Get Weather"
+                    VerticalOptions="End"
+                    Margin="20"
+                    Clicked="GetWeatherButton_Clicked"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

@@ -7,14 +7,14 @@ namespace W25Week9WeatherApp
         public MainPage()
         {
             InitializeComponent();
+
+            if (DeviceInfo.Platform == DevicePlatform.Android)
+            {
+                stack.Background = Brush.MediumPurple;
+            }
         }
 
-        private async Task OnGetWeatherBtnClicked(object sender, EventArgs e)
-        {
-            
-        }
-
-        private async Task GetWeatherBtn_Clicked(object sender, EventArgs e)
+        private async void GetWeatherButton_Clicked(object sender, EventArgs e)
         {
             var location = await Geolocation.Default.GetLocationAsync();
             var lat = location.Latitude;
@@ -25,8 +25,11 @@ namespace W25Week9WeatherApp
             var weatherData = await WeatherProxy.GetWeatherAsync(url);
 
             CityLbl.Text = weatherData.name;
-            TemperatureLbl.Text = weatherData.main.temp.ToString();
+            TemperatureLbl.Text = weatherData.main.temp.ToString("F0") + " \u00B0C";
             ConditionsLbl.Text = weatherData.weather[0].description;
+
+            string icon = $"https://openweathermap.org/img/wn/{weatherData.weather[0].icon}@2x.png";
+            WeatherImg.Source = ImageSource.FromUri(new Uri(icon));
         }
     }
 }
